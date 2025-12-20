@@ -7,7 +7,7 @@
 
 > **🛠️ 實作背景 (Implementation Context)**
 > 
-> 本專案實作於 **Google Antigravity** ID E 環境，並由 **Gemini 1.5 Pro** 模型核心驅動。
+> 本專案實作於 **Google Antigravity** IDE 環境，並由 **Gemini 3 Pro** 模型核心驅動。
 > 指南中的所有案例與檢查點，皆來自於真實的 Agent 開發過程，經過反覆測試與驗證。我們不談空泛理論，只分享那些讓 AI「已讀不回」的真實踩坑經驗。
 
 ## 🎯 為什麼需要這份指南？

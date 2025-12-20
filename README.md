@@ -3,7 +3,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-這份指南旨在協助 **產品經理 (PM)** 與 **工程師** 了解如何標準化 Google Workspace 文件（Docs, Sheets, Slides），以便 AI 助手 (如 ChatGPT, Claude, Gemini, 或透過 API 串接的 Agent) 能準確讀取並協助分析。
+這份指南旨在協助 **產品經理 (PM)** 與 **工程師** 了解如何標準化 Google Workspace 文件（Docs, Sheets, Slides），以便 AI 助手能準確讀取並協助分析。
+
+> **🛠️ 實作背景 (Implementation Context)**
+> 
+> 本專案實作於 **Google Antigravity** ID E 環境，並由 **Gemini 1.5 Pro** 模型核心驅動。
+> 指南中的所有案例與檢查點，皆來自於真實的 Agent 開發過程，經過反覆測試與驗證。我們不談空泛理論，只分享那些讓 AI「已讀不回」的真實踩坑經驗。
 
 ## 🎯 為什麼需要這份指南？
 

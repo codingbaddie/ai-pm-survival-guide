@@ -9,7 +9,9 @@
 *   **[非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」](./docs/AI_Native_Workflow_Guide.md)**
     *   *為什麼要從 Claude Artifacts 轉戰 IDE？*
     *   *如何用 Git 管理 AI 的Context？*
-    *   *機敏資料的這種「備份」方式，最安全。*
+*   **[Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？](./docs/Google_Workspace_Guide.md)**
+    *   *Smart Chips 的 API 陷阱與 Service Account 設定*
+    *   *Google Sheets & Meet 錄影的最佳實踐*
 
 ### 🛑 觀念校正 (Mindset)
 *   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./docs/From_Prototype_to_Production.md)**

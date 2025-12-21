@@ -8,15 +8,15 @@ This is not a textbook; it is a field manual.
 ## 📂 Essays
 
 ### 🚀 Workflow
-*   **[Non-Engineers Guide to AI Collaboration: Managing Your "Second Brain" with GitHub + IDE](./articles/AI_Native_Workflow_Guide_EN.md)** (�� [Chinese](./articles/AI_Native_Workflow_Guide.md))
+*   **[Non-Engineers Guide to AI Collaboration: Managing Your "Second Brain" with GitHub + IDE](./articles/AI_Native_Workflow_Guide_EN.md)** ([Traditional Chinese](./articles/AI_Native_Workflow_Guide.md))
     *   *Why switch from Claude Artifacts to an IDE?*
     *   *How to manage AI Context with Git?*
-*   **[Google Workspace Survival Guide: Why can't AI read my documents?](./articles/Google_Workspace_Guide_EN.md)** (�� [Chinese](./articles/Google_Workspace_Guide.md))
+*   **[Google Workspace Survival Guide: Why can't AI read my documents?](./articles/Google_Workspace_Guide_EN.md)** ([Traditional Chinese](./articles/Google_Workspace_Guide.md))
     *   *The API traps of Smart Chips & Service Account setup*
     *   *Best practices for Google Sheets & Meet recordings*
 
 ### 🛑 Mindset
-*   **[From Prototype to Production: Why does the engineer need 2 more weeks for AI-generated code?](./articles/From_Prototype_to_Production_EN.md)** (�� [Chinese](./articles/From_Prototype_to_Production.md))
+*   **[From Prototype to Production: Why does the engineer need 2 more weeks for AI-generated code?](./articles/From_Prototype_to_Production_EN.md)** ([Traditional Chinese](./articles/From_Prototype_to_Production.md))
     *   *Exploring "The Prototype Illusion"*
     *   *What is "Integration Debt"?*
     *   *Why is AI-generated code often an "Orphan"?*

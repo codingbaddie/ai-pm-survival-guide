@@ -12,7 +12,7 @@
     *   *機敏資料的這種「備份」方式，最安全。*
 
 ### 🛑 觀念校正 (Mindset)
-*   **[給老闆的一封信：為什麼 AI 做好的 Prototype，工程師還要開發兩週？](./docs/The_Prototype_Illusion.md)**
+*   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./docs/From_Prototype_to_Production.md)**
     *   *探討「原型幻覺 (The Prototype Illusion)」*
     *   *什麼是「整合債 (Integration Debt)」？*
     *   *AI 給出的 Code 為什麼是「孤兒」？*

@@ -1,40 +1,42 @@
-# 🦄 AI x PM 生存指南 (AI Product Management Survival Guide)
+# 🦄 AI Product Management Survival Guide
 
-這裡記錄了一位產品經理 (PM) 在 AI Native 開發時代的真實踩坑經驗、工作流重塑與心法筆記。
-這不是教科書，這是戰地手冊。
+[🇹🇼 繁體中文 (Traditional Chinese)](./README_ZH.md)
 
-## 📂 文章列表 (Essays)
+Real-world survival stories, workflow reinventions, and mindset notes from a Product Manager in the AI Native era.
+This is not a textbook; it is a field manual.
 
-### 🚀 工作流 (Workflow)
-*   **[非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」](./articles/AI_Native_Workflow_Guide.md)** (🇺🇸 [English](./articles/AI_Native_Workflow_Guide_EN.md))
-    *   *為什麼要從 Claude Artifacts 轉戰 IDE？*
-    *   *如何用 Git 管理 AI 的Context？*
-*   **[Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？](./articles/Google_Workspace_Guide.md)** (🇺🇸 [English](./articles/Google_Workspace_Guide_EN.md))
-    *   *Smart Chips 的 API 陷阱與 Service Account 設定*
-    *   *Google Sheets & Meet 錄影的最佳實踐*
+## 📂 Essays
 
-### 🛑 觀念校正 (Mindset)
-*   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./articles/From_Prototype_to_Production.md)** (🇺🇸 [English](./articles/From_Prototype_to_Production_EN.md))
-    *   *探討「原型幻覺 (The Prototype Illusion)」*
-    *   *什麼是「整合債 (Integration Debt)」？*
-    *   *AI 給出的 Code 為什麼是「孤兒」？*
+### 🚀 Workflow
+*   **[Non-Engineers Guide to AI Collaboration: Managing Your "Second Brain" with GitHub + IDE](./articles/AI_Native_Workflow_Guide_EN.md)** (�� [Chinese](./articles/AI_Native_Workflow_Guide.md))
+    *   *Why switch from Claude Artifacts to an IDE?*
+    *   *How to manage AI Context with Git?*
+*   **[Google Workspace Survival Guide: Why can't AI read my documents?](./articles/Google_Workspace_Guide_EN.md)** (�� [Chinese](./articles/Google_Workspace_Guide.md))
+    *   *The API traps of Smart Chips & Service Account setup*
+    *   *Best practices for Google Sheets & Meet recordings*
 
----
-
-## 🤝 如何貢獻與交流 (Contributing & Discussions)
-
-這是一個開源的知識庫，也是 **AI PM 的交流社群**。
-GitHub 不只能放 Code，也能討論 Idea！
-
-*   **發現新坑？** 歡迎提交 **Pull Request** 補完指南。
-*   **有血淚史想分享？** 歡迎到 **[Issues](../../issues)** 區開一個標題為 `[分享]` 的討論串，告訴大家你是怎麼解決的。
-*   **有疑問？** 直接開 Issue 提問，我們一起找答案。
-
-讓我們一起把這條 AI 協作之路鋪平！🚀
+### 🛑 Mindset
+*   **[From Prototype to Production: Why does the engineer need 2 more weeks for AI-generated code?](./articles/From_Prototype_to_Production_EN.md)** (�� [Chinese](./articles/From_Prototype_to_Production.md))
+    *   *Exploring "The Prototype Illusion"*
+    *   *What is "Integration Debt"?*
+    *   *Why is AI-generated code often an "Orphan"?*
 
 ---
 
-## 🛠️ 關於作者
+## 🤝 Contributing & Discussions
+
+This is an open-source knowledge base and a **community for AI PMs**.
+GitHub is not just for Code, but for discussing Ideas!
+
+*   **Found a new pitfall?** Welcome to submit a **Pull Request** to complete the guide.
+*   **Have a war story to share?** Welcome to the **[Issues](../../issues)** section to start a thread (title it `[Share]`), tell us how you solved it.
+*   **Have questions?** Open an Issue directly, let's find the answer together.
+
+Let's pave this road to AI collaboration together! 🚀
+
+---
+
+## 🛠️ About the Author
 
 **Coding Baddie**
 *   Product Manager tackling the AI revolution.

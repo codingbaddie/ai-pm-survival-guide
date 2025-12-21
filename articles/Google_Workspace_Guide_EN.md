@@ -1,4 +1,4 @@
-# Google Workspace Pitfalls: Why Can't AI Read Your Docs?
+# 📄 Google Workspace Pitfalls: Why Can't AI Read Your Docs?
 
 *(This guide compiles real-world "pitfalls" and "standard solutions" to help teams build an AI-Friendly knowledge base.)*
 

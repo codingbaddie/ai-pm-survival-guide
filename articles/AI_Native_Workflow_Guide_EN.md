@@ -1,4 +1,4 @@
-# AI-Native Workflow Guide: How to Manage Your "Second Brain" with GitHub + IDE (For Non-Engineers)
+# 🚀 AI-Native Workflow Guide: How to Manage Your "Second Brain" with GitHub + IDE (For Non-Engineers)
 
 *(This guide is written for PMs like me who are used to managing docs in Google Docs/Notion and prototyping in Claude Artifacts, but want to level up to using AI IDEs like Cursor/Windsurf/Gemini Code Assist for product development.)*
 

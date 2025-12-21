@@ -1,4 +1,4 @@
-# From Prototype to Production: Why Does AI Code Take Engineers 2 Weeks to Fix?
+# 🛑 From Prototype to Production: Why Does AI Code Take Engineers 2 Weeks to Fix?
 
 ## The Prototype Illusion (AI 視角的盲點)
 

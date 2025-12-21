@@ -6,15 +6,15 @@
 ## 📂 文章列表 (Essays)
 
 ### 🚀 工作流 (Workflow)
-*   **[非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」](./docs/AI_Native_Workflow_Guide.md)** (🇺🇸 [English](./docs/AI_Native_Workflow_Guide_EN.md))
+*   **[非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」](./articles/AI_Native_Workflow_Guide.md)** (🇺🇸 [English](./articles/AI_Native_Workflow_Guide_EN.md))
     *   *為什麼要從 Claude Artifacts 轉戰 IDE？*
     *   *如何用 Git 管理 AI 的Context？*
-*   **[Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？](./docs/Google_Workspace_Guide.md)** (🇺🇸 [English](./docs/Google_Workspace_Guide_EN.md))
+*   **[Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？](./articles/Google_Workspace_Guide.md)** (🇺🇸 [English](./articles/Google_Workspace_Guide_EN.md))
     *   *Smart Chips 的 API 陷阱與 Service Account 設定*
     *   *Google Sheets & Meet 錄影的最佳實踐*
 
 ### 🛑 觀念校正 (Mindset)
-*   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./docs/From_Prototype_to_Production.md)** (🇺🇸 [English](./docs/From_Prototype_to_Production_EN.md))
+*   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./articles/From_Prototype_to_Production.md)** (🇺🇸 [English](./articles/From_Prototype_to_Production_EN.md))
     *   *探討「原型幻覺 (The Prototype Illusion)」*
     *   *什麼是「整合債 (Integration Debt)」？*
     *   *AI 給出的 Code 為什麼是「孤兒」？*

@@ -9,7 +9,7 @@ Previously, I kept documents in the cloud (Google Drive), and I could resume wor
 
 This is because Git only saves "Code," not our "Brain" (Decision process, TODOs). This guide shares an **AI-Native** project management methodology and teaches you how to elegantly handle the headache of **"Sensitive Data Backup."**
 
-## Why Switch from Claude Artifacts to an IDE?
+## 🤔 Why Switch from Claude Artifacts to an IDE?
 
 You might think: *"Claude Pro allows uploading CSVs as Knowledge Base, and I can iterate on multiple Artifacts at once!"* True, the web version is powerful. But when you move from "Prototyping" to "Product," the IDE's killer apps are **"Structural Understanding"** and **"Collaboration"**:
 

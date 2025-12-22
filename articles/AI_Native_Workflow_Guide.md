@@ -67,24 +67,29 @@ my-awesome-project/
 ### 實戰案例
 假設我的專案有一個 VIP 客戶名單 `data/VIP_Clients_Q1.csv` 和一個金鑰檔 `secrets.json`。
 
-**步驟 1：告訴 Git「無視」它們**
-在專案根目錄找到或建立 `.gitignore` 檔案，加入以下內容：
+**一次性設定（重要！）：**
 
-```gitignore
-# 忽略機敏資料夾內的所有檔案
-data/VIP_Clients_Q1.csv
-secrets.json
+1. 在專案根目錄建立或編輯 `.gitignore` 檔案：
 
-# 也可以忽略整個環境設定檔
-.env
-```
+   ```gitignore
+   # 機敏資料
+   data/*.csv
+   data/*.xlsx
+   secrets.json
+   
+   # 也可以忽略整個環境設定檔
+   .env
+   ```
 
-**步驟 2：手動備份**
-既然這些檔案不上傳 GitHub，那換電腦怎麼辦？
-👉 **回到最原始的方法：雲端硬碟**。
-1. 把 `VIP_Clients_Q1.csv` 上傳到你的 Google Drive 私人資料夾。
-2. 在新電腦 `git clone` 專案後。
-3. 從 Google Drive 下載該檔案，並**手動放回** `data/` 資料夾中。
+2. 這樣 Git 就不會追蹤這些檔案，避免意外上傳到 GitHub
+
+**日常流程：**
+
+* **電腦 A**：將機敏檔案上傳到 Google Drive 私人資料夾
+* **電腦 B**：從 Google Drive 下載，放回 `data/` 資料夾
+* 不用擔心 `git push` 時會上傳機敏資料（`.gitignore` 已經幫你擋住了）
+
+> 💡 **提示**：設定好 `.gitignore` 後，你可以放心使用 `git add .` 指令，Git 會自動跳過被忽略的檔案。
 
 這樣既保證了資安，又能在不同電腦間順利切換工作！
 
@@ -97,21 +102,95 @@ secrets.json
 ### 在電腦 A (下班前)
 1. 呼叫 AI：「更新 `task.md`，把我們做完的打勾。」
 2. 執行 Git 指令 (或請 AI 幫你)：
+
    ```bash
    git add .
    git commit -m "update: 完成首頁設計與 task 更新"
    git push
    ```
+
 3. 確認機敏資料 (如 CSV) 已經備份在 Google Drive。
 
 ### 在電腦 B (回家後)
-1. 打開 Terminal:
+
+**------------ 第一次使用 ------------**
+
+1. 打開 Terminal，clone 專案：
    ```bash
    git clone https://github.com/your-name/project.git
+   cd project
    ```
+
+**------------ 之後使用 ------------**
+
+1. 打開 Terminal，進入專案資料夾並同步最新版本：
+   ```bash
+   cd project
+   git pull
+   ```
+
+**------------ 共同步驟 ------------**
+
 2. **[關鍵動作]** 從 Google Drive 下載機敏檔案 (`VIP_Clients_Q1.csv`)，放回 `data/` 資料夾。
 3. 打開 IDE，跟 AI 說：「請讀取 `task.md`，告訴我接下來該做什麼？」
-4. 🚀 無縫接軌，繼續開發！
+4. 🚀 無縫接軌，繼續開發/工作！
+
+### ⚠️ 遇到衝突怎麼辦？
+
+如果在執行 `git pull` 時出現衝突（conflict），通常是因為兩台電腦都修改了同一個檔案：
+
+**解決方式：**
+
+1. **使用 AI 協助**：直接跟 AI 說「我遇到 Git 衝突，請幫我解決」
+2. **手動處理**：打開衝突檔案，會看到類似這樣的標記：
+
+   ```text
+   <<<<<<< HEAD
+   你在電腦 B 的修改
+   =======
+   你在電腦 A 的修改
+   >>>>>>> origin/main
+   ```
+
+   保留需要的內容，刪除標記，然後：
+
+   ```bash
+   git add .
+   git commit -m "fix: 解決衝突"
+   git push
+   ```
+
+**預防衝突的最佳實踐：**
+
+* ✅ 每次開始工作前先 `git pull`
+* ✅ 每次結束工作後記得 `git push`
+* ✅ 避免在兩台電腦同時修改同一個檔案
+
+### 💡 進階技巧：使用 Git 視覺化工具
+
+如果不習慣用指令，可以使用圖形化介面工具，對 PM 更友善：
+
+**推薦工具：**
+
+* **[Fork](https://git-fork.com/)** (Mac/Windows) - 介面簡潔，操作直覺
+* **[GitHub Desktop](https://desktop.github.com/)** - 最簡單，適合初學者
+* **[Sourcetree](https://www.sourcetreeapp.com/)** - 功能完整，免費
+
+**使用 Fork 的流程：**
+
+1. 開啟 Fork，點擊「Pull」按鈕 → 同步最新版本
+2. 修改完檔案後，在左側看到變更清單
+3. 勾選要提交的檔案，填寫 commit 訊息
+4. 點擊「Push」按鈕 → 上傳到 GitHub
+
+**📚 Fork 學習資源：**
+
+* **影片教學**：
+  * [【2025 GIT 新人級系列教學】GIT快速入門Fork+Gitlab](https://youtu.be/oeFEs9-g3mE?si=q_RE7ORbP6xcy3vT) - 適合完全新手，從安裝到基本操作
+  * [How to use Git Fork!](https://youtu.be/o1eypmon3N8?si=Ux2KJkVEWpQkQbtl) - 實戰演示版本控制流程
+
+> 💡 **提示**：即使用 GUI 工具，也建議了解基本的 Git 概念（commit、push、pull），這樣遇到問題時更容易解決。或者直接問 AI：「這個錯誤訊息是什麼意思？」
+
 
 ---
 

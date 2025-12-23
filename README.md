@@ -21,7 +21,9 @@ Here, I document the methodologies for setting boundaries, defining architecture
 | Article Title | Key Concept | Languages |
 |:--- |:--- |:--- |
 | **Reclaiming Sovereignty: Why Your AI Needs a Strict Product Manager** | Defines the "Tiered Engagement Model" and provides the `.cursorrules` configuration to force AI into critical thinking mode. | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
-| *(More coming soon...)* | | |
+| **AI-Native Workflow Guide** | A comprehensive guide on integrating AI deeply into your product management workflow, from PRD to code. | [English](./articles/AI_Native_Workflow_Guide_EN.md) / [中文](./articles/AI_Native_Workflow_Guide.md) |
+| **From Prototype to Production** | Strategies for taking AI-generated prototypes and refactoring them into production-grade systems. | [English](./articles/From_Prototype_to_Production_EN.md) / [中文](./articles/From_Prototype_to_Production.md) |
+| **Google Workspace Guide** | How to leverage AI within the Google Workspace ecosystem for maximum productivity. | [English](./articles/Google_Workspace_Guide_EN.md) / [中文](./articles/Google_Workspace_Guide.md) |
 
 ## 🛠 Usage
 This guide is practical. Most articles come with **Configuration Files** (like `.cursorrules` or System Prompts) that you can directly copy-paste into your workflow.

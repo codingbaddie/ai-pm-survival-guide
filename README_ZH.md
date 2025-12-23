@@ -1,46 +1,36 @@
-# 🦄 AI x PM 生存指南 (AI Product Management Survival Guide)
+# AI PM Survival Guide 🧠
+> **在人工智慧時代奪回人類的思考主權。**
 
-[🇺🇸 English](./README.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-這裡記錄了一位產品經理 (PM) 在 AI Native 開發時代的真實踩坑經驗、工作流重塑與心法筆記。
-這不是教科書，這是戰地手冊。
-
-## 📂 文章列表 (Essays)
-
-### 🚀 工作流 (Workflow)
-*   **[非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」](./articles/AI_Native_Workflow_Guide.md)** (🇺🇸 [English](./articles/AI_Native_Workflow_Guide_EN.md))
-    *   *為什麼要從 Claude Artifacts 轉戰 IDE？*
-    *   *如何用 Git 管理 AI 的Context？*
-*   **[Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？](./articles/Google_Workspace_Guide.md)** (🇺🇸 [English](./articles/Google_Workspace_Guide_EN.md))
-    *   *Smart Chips 的 API 陷阱與 Service Account 設定*
-    *   *Google Sheets & Meet 錄影的最佳實踐*
-
-### 🛑 觀念校正 (Mindset)
-*   **[從 Prototype 到 Production：為什麼 AI 寫好的 Code，工程師還要開發兩週？](./articles/From_Prototype_to_Production.md)** (🇺🇸 [English](./articles/From_Prototype_to_Production_EN.md))
-    *   *探討「原型幻覺 (The Prototype Illusion)」*
-    *   *什麼是「整合債 (Integration Debt)」？*
-    *   *AI 給出的 Code 為什麼是「孤兒」？*
+[English Version](./README.md)
 
 ---
 
-## 🤝 如何貢獻與交流 (Contributing & Discussions)
+## 宣言 (Manifesto)
+我們正在進入一個 **「Coding 變得廉價，但思考變得昂貴」** 的時代。
+隨著 AI 模型越來越強大，產品經理（以及 AI-Native 開發者）的角色正在從「管理執行」轉變為**「管理智能」**。
 
-這是一個開源的知識庫，也是 **AI PM 的交流社群**。
-GitHub 不只能放 Code，也能討論 Idea！
+這個 Repository 不是 Prompt 的大補帖。這是給那些想要領導 AI、而不是被 AI 取代的人類，所準備的**策略、心智模型與協作協議**。
 
-*   **發現新坑？** 歡迎提交 **Pull Request** 補完指南。
-*   **有血淚史想分享？** 歡迎到 **[Issues](../../issues)** 區開一個標題為 `[分享]` 的討論串，告訴大家你是怎麼解決的。
-*   **有疑問？** 直接開 Issue 提問，我們一起找答案。
+## 📖 協議庫 (The Protocol Library)
 
-讓我們一起把這條 AI 協作之路鋪平！🚀
+這裡記錄了如何設定邊界、定義架構，以及如何在 AI 協作中強制執行批判性思考的方法論。
+
+| 文章標題 | 核心概念 | 語言版本 |
+|:--- |:--- |:--- |
+| **奪回思考主權：為什麼你的 AI 需要一位嚴厲的產品經理？** | 定義「分級介入模型 (Tiered Engagement Model)」並提供 `.cursorrules` 設定檔，迫使 AI 進入批判思考模式。 | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
+| *(更多內容即將推出...)* | | |
+
+## 🛠 使用方法
+這份指南是實戰導向的。大多數文章都會附上**設定檔**（如 `.cursorrules` 或 System Prompts），你可以直接複製貼上到你的工作流中。
+
+## 🤝 參與貢獻
+如果你發現了馴服 AI 的更好方法，歡迎提交 PR。我們正在尋找：
+- 新的心智模型 (Mental Models)
+- 經過實戰驗證的 System Prompts
+- 失敗故事 (AI 導致災難的驗屍報告)
 
 ---
-
-## 🛠️ 關於作者
-
-**Coding Baddie**
-*   Product Manager tackling the AI revolution.
-*   Sharing real-world stories of building products with AI Agents.
-
----
-*If you find these guides helpful, please star ⭐️ this repo!*
+*Created by [Coding Baddie](https://github.com/codingbaddie)*

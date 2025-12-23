@@ -1,46 +1,36 @@
-# 🦄 AI Product Management Survival Guide
+# AI PM Survival Guide 🧠
+> **Reclaiming Human Sovereignty in the Age of Artificial Intelligence.**
 
-[🇹🇼 繁體中文 (Traditional Chinese)](./README_ZH.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
-Real-world survival stories, workflow reinventions, and mindset notes from a Product Manager in the AI Native era.
-This is not a textbook; it is a field manual.
-
-## 📂 Essays
-
-### 🚀 Workflow
-*   **[Non-Engineers Guide to AI Collaboration: Managing Your "Second Brain" with GitHub + IDE](./articles/AI_Native_Workflow_Guide_EN.md)** ([Traditional Chinese](./articles/AI_Native_Workflow_Guide.md))
-    *   *Why switch from Claude Artifacts to an IDE?*
-    *   *How to manage AI Context with Git?*
-*   **[Google Workspace Survival Guide: Why can't AI read my documents?](./articles/Google_Workspace_Guide_EN.md)** ([Traditional Chinese](./articles/Google_Workspace_Guide.md))
-    *   *The API traps of Smart Chips & Service Account setup*
-    *   *Best practices for Google Sheets & Meet recordings*
-
-### 🛑 Mindset
-*   **[From Prototype to Production: Why does the engineer need 2 more weeks for AI-generated code?](./articles/From_Prototype_to_Production_EN.md)** ([Traditional Chinese](./articles/From_Prototype_to_Production.md))
-    *   *Exploring "The Prototype Illusion"*
-    *   *What is "Integration Debt"?*
-    *   *Why is AI-generated code often an "Orphan"?*
+[中文版 (Chinese Version)](./README_ZH.md)
 
 ---
 
-## 🤝 Contributing & Discussions
+## Manifesto
+We are entering an era where **coding is cheap, but thinking is expensive**.
+As AI models become more powerful, the role of a Product Manager (and AI-Native Developer) shifts from "managing execution" to **"managing intelligence."**
 
-This is an open-source knowledge base and a **community for AI PMs**.
-GitHub is not just for Code, but for discussing Ideas!
+This repository is not a collection of prompts. It is a collection of **strategies, mental models, and protocols** for humans who want to lead AI, not be replaced by it.
 
-*   **Found a new pitfall?** Welcome to submit a **Pull Request** to complete the guide.
-*   **Have a war story to share?** Welcome to the **[Issues](../../issues)** section to start a thread (title it `[Share]`), tell us how you solved it.
-*   **Have questions?** Open an Issue directly, let's find the answer together.
+## 📖 The Protocol Library
 
-Let's pave this road to AI collaboration together! 🚀
+Here, I document the methodologies for setting boundaries, defining architecture, and enforcing critical thinking in AI collaboration.
+
+| Article Title | Key Concept | Languages |
+|:--- |:--- |:--- |
+| **Reclaiming Sovereignty: Why Your AI Needs a Strict Product Manager** | Defines the "Tiered Engagement Model" and provides the `.cursorrules` configuration to force AI into critical thinking mode. | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
+| *(More coming soon...)* | | |
+
+## 🛠 Usage
+This guide is practical. Most articles come with **Configuration Files** (like `.cursorrules` or System Prompts) that you can directly copy-paste into your workflow.
+
+## 🤝 Contribution
+If you have found a better way to "tame the beast," please submit a PR. We are looking for:
+- New Mental Models
+- Battle-tested System Prompts
+- Failure Stories (Post-mortems of AI-led disasters)
 
 ---
-
-## 🛠️ About the Author
-
-**Coding Baddie**
-*   Product Manager tackling the AI revolution.
-*   Sharing real-world stories of building products with AI Agents.
-
----
-*If you find these guides helpful, please star ⭐️ this repo!*
+*Created by [Coding Baddie](https://github.com/codingbaddie)*

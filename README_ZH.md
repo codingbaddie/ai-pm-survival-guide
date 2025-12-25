@@ -22,8 +22,9 @@
 |:--- |:--- |:--- |
 | **奪回思考主權：為什麼你的 AI 需要一位嚴厲的產品經理？** | 定義「分級介入模型 (Tiered Engagement Model)」並提供 `.cursorrules` 設定檔，迫使 AI 進入批判思考模式。 | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
 | **AI 原生工作流指南 (AI-Native Workflow Guide)** | 深度整合 AI 到產品管理工作流的綜合指南，從 PRD 到程式碼實作。 | [English](./articles/AI_Native_Workflow_Guide_EN.md) / [中文](./articles/AI_Native_Workflow_Guide.md) |
-| **從原型到生產 (From Prototype to Production)** | 如何將 AI 生成的原型重構為生產級系統的策略與實戰經驗。 | [English](./articles/From_Prototype_to_Production_EN.md) / [中文](./articles/From_Prototype_to_Production.md) |
 | **Google Workspace 指南** | 如何在 Google Workspace 生態系中運用 AI 達到生產力最大化。 | [English](./articles/Google_Workspace_Guide_EN.md) / [中文](./articles/Google_Workspace_Guide.md) |
+| **從原型到生產 (From Prototype to Production)** | 如何將 AI 生成的原型重構為生產級系統的策略與實戰經驗。 | [English](./articles/From_Prototype_to_Production_EN.md) / [中文](./articles/From_Prototype_to_Production.md) |
+| **「隨意門」工作流 (Magic Tunnel Workflow)** | 不用切換視窗，用 `mark` 指令瞬間捕捉學習心得並傳送至知識庫。 | [English](./articles/Magic_Tunnel_Workflow.md) / [中文](./articles/Magic_Tunnel_Workflow_ZH.md) |
 
 ## 🛠 使用方法
 這份指南是實戰導向的。大多數文章都會附上**設定檔**（如 `.cursorrules` 或 System Prompts），你可以直接複製貼上到你的工作流中。

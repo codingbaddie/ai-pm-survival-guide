@@ -1,0 +1,15 @@
+To the AI in the other window:
+
+Please summarize our discussion/debugging session into a "Learning Note".
+Focus on:
+1. What was the core problem?
+2. What "Mental Model" or "Technique" did we use to solve it?
+3. What should I do differently next time?
+
+Format:
+## [Topic Name]
+- **Problem**: ...
+- **Solution**: ...
+- **Key Takeaway**: ...
+
+(Output ONLY the note, no conversational filler.)

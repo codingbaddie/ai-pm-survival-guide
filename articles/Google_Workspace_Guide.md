@@ -1,48 +1,66 @@
-# 📄 Google Workspace 踩坑指南：AI 為什麼讀不到你的文件？
+# 📄 Google Workspace × AI 指南：讓 Agent 讀得懂你的文件 (2026 改版)
 
-*(這份指南整理了實戰中遇到的「坑」與「標準化解法」，幫助團隊建立 AI 友善 (AI-Friendly) 的知識庫。)*
+[🇺🇸 English](./Google_Workspace_Guide_EN.md) · *Last reviewed: 2026-10*
 
-## 🎯 為什麼需要這份指南？
+*(整理實戰中踩過的坑與標準解法，幫助團隊建立 AI 友善 (AI-Friendly) 的知識庫。)*
 
-在導入 AI Workflow 的過程中，我發現人類習慣的「視覺化排版」，對 AI 來說往往是閱讀障礙。
+> 📝 **改版說明**：第一版教大家「每位 PM 開一個 Service Account、下載 JSON Key」。以現在的標準，這是**資安反模式**，已經改掉。另外 Google Docs API 現在讀得到分頁 (Tabs)，相關段落也更新了。
 
-> **"AI 無法像人類一樣「登入 Google 帳號」並「點擊」按鈕。它是透過 API 與純文字來理解世界的。"**
+## 🎯 核心觀念
 
-## ✅ 文件準備 Checklist
+> **AI 不會「看」你的文件，它是透過 API 或匯出的文字在「讀」你的文件。**
 
-### Type A: Google Docs (文件)
-
-| 檢核項目 | 問題 (Pain Point) | 標準解法 (Solution) |
-| :--- | :--- | :--- |
-| **連結處理** | ❌ **Smart Chips**<br>貼上網址後變成灰色的膠囊狀，API 讀取時往往會**遺失網址**，只剩標題。 | ✅ **標準超連結 (Hyperlink)**<br>使用藍色底線文字 (`Cmd+K`)，確保 `url` 屬性被保留。<br><br>👉 [範例連結](https://docs.google.com/) (O)<br>👉 `[📄 範例文件]` (X) |
-| **分頁標示** | 🚫 **Tabs**<br>API 讀取會將所有分頁接成一串長文，AI 分不清邊界。 | ✅ **H1 標題路標**<br>在每個分頁內容的最頂端，手動加上 **H1 大標題** 寫下分頁名稱。<br>*(例：# Tab 1: 訪談紀錄)* |
-
-### Type B: Google Sheets (試算表)
-
-*   **指定工作表**：Prompt 時請明確指定工作表名稱（例：「請分析 'Q3 營收' 工作表」）。
-*   **避免合併儲存格**：Merged Cells 會導致欄位對應錯亂，請盡量保持單純的表格結構。
-*   **首列即標頭**：第一列 (Row 1) 必須是清晰的欄位名稱 (Header)。
-
-### Type C: 會議錄影 (Meet/Zoom)
-
-*   **能力現狀**：**Gemini 3 Pro 原生支援讀取影片與音訊** (Multimodal)，技術上是可以直接分析 `.mp4` 檔案的。
-*   **實務建議**：儘管模型讀得懂，但考慮到 **API 成本 (Token 消耗)** 與 **處理速度**，加上搜尋引擊 (RAG) 對純文字索引的支援度最好，仍建議提供 **逐字稿 (Transcript)**。
-*   **最佳解法**：使用 Google Meet 自動產生的逐字稿，或用工具轉成 `.txt`，讓 AI 能以最低成本、最快速度進行精準分析。
+人類習慣的視覺排版（顏色、膠囊連結、合併儲存格），轉成文字後常常資訊會遺失。
+一份對 AI 友善的文件，**對新同事也一定更友善**：結構清楚、連結明確、標題有意義。
 
 ---
 
-## 🔐 如何授權 (Access Control)
+## 🔐 第一步：讓 AI 連上 Workspace（用對的方式）
 
-為了確保資安與追蹤性，建議每位 PM 申請獨立的 Google Cloud Service Account。
+### ✅ 推薦：用官方 Connector / MCP，以「你自己的身分」授權
+現在主流的 AI 工具都能直接連 Google Drive / Docs / Sheets：
+*   **Claude**：在設定裡啟用 Google Drive 等 Connector，透過 OAuth 授權。
+*   **Gemini in Workspace**：直接在 Docs、Sheets、Gmail 裡使用。
+*   **Coding Agent**（Claude Code、Cursor 等）：接上 Google Workspace 的 MCP Server。
 
-### 1. 建立 Service Account
-1. 前往 [Google Cloud Console](https://console.cloud.google.com/) > **IAM & Admin** > **Service Accounts**。
-2. 建立新帳號 (例如：`pm-rachel-ai-agent`)。
-3. 下載 **JSON Key** 並妥善保管（這就是你的 AI 數位身分證）。
+好處是：**AI 只看得到「你本來就看得到」的檔案**，權限跟著你的帳號走，離職或調職時權限自動收回，也不用保管任何金鑰檔。
 
-### 2. 開放權限
-在任何想讓 AI 讀取的 Google 文件中，點擊 **Share**，將 Service Account 的 Email 加入：
+### ⚠️ 只有在做「自動化流程」時才用 Service Account
+如果是排程任務、伺服器上跑的機器人，才需要 Service Account。這時請注意：
+*   **不要下載 JSON Key**。金鑰檔外流等於帳號外流，Google 自己也建議盡量避免；很多組織的 Google Cloud 預設就禁止建立金鑰。
+*   優先使用 Workload Identity Federation、或在 Google Cloud 環境內直接綁定身分。
+*   權限給到最小：只分享需要的資料夾，設成 **Viewer**。
 
-> `pm-name-ai@project-id.iam.gserviceaccount.com`
+> 第一版我建議「每位 PM 各自開 Service Account + 下載 JSON Key 當 AI 的數位身分證」。這在小團隊很方便，但金鑰會散落在每個人的電腦裡，無法稽核、也很難收回。**個人使用請一律走 OAuth Connector。**
 
-*   權限設定：**Viewer (檢視者)**
+---
+
+## ✅ 文件準備 Checklist
+
+### Type A：Google Docs
+
+| 檢核項目 | 問題 | 建議做法 |
+| :--- | :--- | :--- |
+| **連結** | ❌ **Smart Chips**（灰色膠囊）<br>依工具不同，轉成文字時可能**只剩標題、網址不見**。 | ✅ 重要的參考資料用**標準超連結**（`Cmd+K`），或在旁邊直接貼網址。 |
+| **分頁 (Tabs)** | ⚠️ Docs API 現在能讀分頁了，但不是每個 Connector、匯出格式都會保留分頁邊界。 | ✅ 每個分頁最上方放一個 **H1 標題**寫分頁名稱。成本很低，任何工具都讀得懂。 |
+| **標題層級** | ❌ 用「粗體 + 放大字」假裝標題。 | ✅ 用真正的 Heading 1/2/3。AI 靠標題理解文件結構。 |
+| **圖片裡的資訊** | ❌ 關鍵數字只存在截圖裡。 | ✅ 圖片旁邊用文字寫出重點或數字。 |
+
+### Type B：Google Sheets
+*   **一張表一件事**，Prompt 時明確指定工作表名稱（例：「分析 'Q3 營收' 工作表」）。
+*   **不要合併儲存格**，第一列 (Row 1) 就是清楚的欄位名稱。
+*   **資料和報表分開**：原始資料一張表、樞紐分析與圖表另一張。AI 讀原始資料最準。
+*   **含個資的表不要直接丟給 AI**：先做一份去識別化或彙總後的版本。
+
+### Type C：會議錄影 (Meet / Zoom)
+*   **能力現狀**：主流的多模態模型已經能直接看影片、聽音訊。
+*   **實務建議**：仍然優先用**逐字稿 / AI 會議筆記**。文字比影片便宜、快，也最容易被搜尋和引用。只有需要看畫面（例如 Demo 錄影、使用者測試）時才丟影片。
+*   **最佳做法**：開啟 Meet 的逐字稿或 AI 筆記功能，會後存在固定的資料夾，命名統一（例：`2026-10-02_產品週會`），之後 AI 用 Connector 就能直接搜。
+
+---
+
+## 🧭 團隊層級的建議
+
+1.  **固定的「AI 讀取區」**：在 Drive 裡建一個資料夾放 PRD、決策紀錄、會議筆記，命名有規則。AI 和新人都知道去哪找。
+2.  **定期清理過期文件**：AI 不知道哪份是舊版。過期的文件請標註「已作廢」或移到封存資料夾，不然它會很有自信地引用錯的版本。
+3.  **重要的東西最終要進 Repo**：如果是 Agent 會反覆用到的規格，匯出成 Markdown 放進專案的 `docs/`（見 [AI 原生工作流指南](./AI_Native_Workflow_Guide.md)）。

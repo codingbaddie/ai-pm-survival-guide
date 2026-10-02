@@ -1,124 +1,114 @@
-# 🚀 非工程師也能懂的 AI 協作指南：如何用 GitHub + IDE 管理你的「第二大腦」
+# 🚀 非工程師也能懂的 AI 協作指南：把 Git Repo 變成你和 Agent 的「共享大腦」(2026 改版)
 
-*(這篇文章是寫給像我一樣，習慣用 Google Docs/Notion 管理文件，把不斷迭代的prototype 都放在雲上（claude artifact，但想開始使用 Cursor/Windsurf/Gemini Code Assist 等 AI IDE 進行產品開發的 PM 或領域專家)*
+[🇺🇸 English](./AI_Native_Workflow_Guide_EN.md) · *Last reviewed: 2026-10*
+
+*(寫給習慣用 Google Docs / Notion 管文件、用 Claude Artifacts 做 Prototype，現在想讓 AI Agent 真正參與產品開發的 PM 與領域專家。)*
+
+> 📝 **改版說明**：第一版的主軸是「從網頁版轉戰 IDE」。現在 Coding Agent 已經同時存在於 Terminal、桌面 App、網頁和 IDE，**介面不是重點了**。真正的分水嶺是：**AI 是在「讀你貼給它的東西」，還是在「一個真實的 Repo 裡自己動手」。**
 
 ## 為什麼需要這篇指南？
 
-在 AI 輔助寫 code 的時代，我遇到一個新的挑戰：**「記憶斷層」**。
-以前我都把文件在雲端 (Google Drive)，隨便換台電腦登入就能繼續工作。
-但現在，當我們把專案 `git clone` 下來時，AI 往往會問：「你是誰？我們上次做到哪？」
+我遇過最痛的問題叫 **「記憶斷層」**：
+換一台電腦、開一個新對話，AI 就問：「你是誰？我們上次做到哪？」
 
-這是因為 Git 只存了「程式碼」，卻沒存我們的「大腦」(決策過程、待辦事項)。
-這篇指南將分享一套 **AI Native 的專案管理心法**，並教你如何優雅地處理最頭痛的「機敏資料備份」問題。
-
----
-
-## 🤔 為什麼要從 Claude Artifacts 轉戰 IDE？
-你可能會覺得：「Claude Pro 也可以上傳 CSV 當 Knowledge Base，也可以一次改好幾個 Artifacts 啊！」
-沒錯，現在的 AI 網頁版都很強。但當你從「做 Prototype」進階到「做 Product」時，IDE 真正的殺手級應用在於 **「架構力」** 與 **「協作性」**：
-
-1.  **靜態知識庫 vs. 動態工程索引 (Static Knowledge vs. Live Code Graph)**
-    *   **網頁版 (Claude Projects)**: 它的確很聰明，能讀取你上傳的 Knowledge。但本質上它是**「基於文字的檢索 (Vector Search)」**且讀取的是**「靜態檔案」**。當你改了 Code 但還沒重傳，或是需要跨越 20 層檔案追蹤一個函數的定義時，它容易產生幻覺。
-    *   **IDE Agent**: 它是基於 **「即時的結構化理解 (Live Graph & LSP)」**。
-        *   *技術差異*：IDE 不只看「文字」，還會呼叫底層 API (如 Language Server Protocol) 去分析程式碼的**結構**。它知道 `User.login()` 被哪些檔案引用、它的定義在哪裡。
-        *   *實戰價值*：當你說「依照 PRD 修改登入邏輯」，IDE 能精準抓出「所有用到登入的頁面」並進行修改，而不是只改了你貼給它的那一段。這種**對「現狀 (Live State)」的精準掌控**，是網頁版難以取代的。
-
-2.  **散落的零件 vs. 完整的引擎 (Snippets vs. Repository)**
-    *   **網頁版**: Claude Artifacts 確實有 Code，也可以下載。但對工程師來說，那往往是**「孤島式」的程式碼**。拿到之後，工程師還得自己建立 `package.json`、搞定依賴版本、猜測這段 Code 該放在哪個資料夾，甚至要解決套件版本衝突。
-    *   **IDE + GitHub**: 你交付的是一個**「能動的系統」**。
-        *   **Standardization**: 你的 Repo 裡有完整的檔案結構 (`src/`, `components/`) 和環境設定 (`package.json`)。工程師只要 `git clone` 然後 `npm install`，專案就跑起來了。
-        *   **Scalability**: 從單頁 Prototype 到百頁大專案，Repo 的結構能支撐擴充，而不會崩塌成一堆難以管理的 Artifacts 連結。
-
-3.  **避開「原型完成度幻覺」 (The Prototype Illusion)**
-    *   **網頁版**: 最大的陷阱就是「看起來做完了」。但 AI 在真空環境寫的 Prototype，完全不知道你公司既有的 DB Schema 長怎樣，也不知道改了這行 CSS 會不會讓舊功能的版面崩壞。
-    *   **IDE**: 在這裡，你是基於**既有的 Codebase** 進行迭代。AI 會被迫面對真實世界的髒亂——「這段新 Code 要怎麼接舊的 API？」、「這個變數會不會跟舊的衝到？」。能在開發初期就發現這些**整合債 (Integration Debt)**，才是不搞死團隊的專業 PM。
+原因很簡單：對話會消失，**檔案不會**。
+所以 AI Native 的第一課不是 Prompt，而是：**把決策、規格、進度都寫成檔案，放進 Repo。** 這樣任何一個 Agent、任何一台電腦、任何一個新同事，都能在幾分鐘內接上。
 
 ---
 
+## 🤔 「聊天 + 上傳檔案」 vs. 「Agent 在 Repo 裡工作」
+
+Claude Projects、ChatGPT 上傳檔案都很好用，做探索、寫文件、做一次性的 Prototype 都夠了。但當你從「做 Prototype」走到「做 Product」，差別會變得很明顯：
+
+| | **聊天 + 上傳檔案** | **Agent 在 Repo 裡** (Claude Code、Cursor、Codex…) |
+|:---|:---|:---|
+| **看到的東西** | 你上傳的那一版快照 | 現在這一刻的完整專案 |
+| **怎麼找資料** | 從你給的檔案裡檢索 | 自己搜尋、開檔、追著引用一路讀下去 |
+| **能不能驗證** | 只能「看起來對」 | 能跑程式、跑測試、看到錯誤再修 |
+| **產出** | 一段 Code / 一個 Artifact | 一組改動 (diff)，可以 review、可以 revert |
+
+> ⚠️ 第一版我寫說 IDE 是靠「LSP + Code Graph」理解程式碼。這不精確。現在的 Coding Agent 主要是**像工程師一樣自己去搜尋和閱讀檔案**（有些工具會再加上索引），重點在於它能**自己去看、自己去驗證**，而不是某種神奇的結構分析。
+
+### 為什麼這對 PM 很重要？
+1.  **避開「原型完成度幻覺」**：在真空環境做的 Prototype 不知道你們的 DB Schema、Design System、既有 API。在真實 Repo 裡做，Agent 一開始就會撞到這些現實。（延伸閱讀：[從 Prototype 到 Production](./From_Prototype_to_Production.md)）
+2.  **交付的是能動的系統**：工程師拿到的是一個 branch 或 PR，不是一段要自己找地方貼的 Code。
+3.  **你可以自己驗證**：「幫我把這個跑起來，截圖給我看」——PM 不用等工程師，也能確認東西真的會動。
+
 ---
 
-## 💡 核心觀念：把 IDE 當成你的第二大腦
+## 💡 核心觀念：Context Files 就是你的第二大腦
 
-不要只把 IDE (與 AI 的對話視窗) 當成寫程式的地方，它也是你的專案管理中心。
-為了讓 AI 隨時能進入狀況，我們需要在專案根目錄建立 **「Context Files (脈絡檔案)」**。
-
-### 1. 必備的檔案結構
-我都這樣整理我的專案，讓 AI 一秒讀懂：
+### 1. 我現在的專案結構
 
 ```text
 my-awesome-project/
-├── 📂 docs/                # 💡 存放 PRD、訪談逐字稿、規格書 (AI 讀這裡才知道要做什麼)
-├── 📂 data/                # 📊 存放數據資料 (下面會教你怎麼處理機敏資料)
-├── 📂 scripts/             # 🛠️ 存放給 AI 用的小工具 (例如資料處理腳本)
-├── 📝 task.md              # ✅ [重要] 專案進度表 (我們的共享大腦)
-└── 📝 implementation_plan.md # 🏗️ [重要] 技術實作計畫 (AI 的施工藍圖)
+├── 📝 AGENTS.md            # 🧭 給 Agent 的家規：專案是什麼、怎麼跑、哪些地方要先問我
+├── 📝 CLAUDE.md            # (用 Claude Code 的話) 裡面一行 @AGENTS.md 就好
+├── 📂 docs/
+│   ├── prd/               # 💡 PRD、訪談紀錄、規格（AI 讀這裡才知道要做什麼）
+│   └── decisions/         # ⚖️ 重要決策紀錄：為什麼選 A 不選 B
+├── 📂 data/
+│   └── sample/            # 📊 去識別化的範例資料（真實資料不進 Repo）
+├── 📝 .env.example         # 🔑 環境變數「長怎樣」，但沒有真的值
+└── 📝 .gitignore
 ```
 
-*   **`task.md`**: 就像你的 Jira/Trello，但直接寫成 Markdown 放在這裡。每次叫 AI 工作前，先讓它讀這個檔，它就知道現在進度到哪。
-*   **`docs/`**: 把 Google Docs 下載成 `.md` 或 `.txt` 放進來，AI 讀取本地檔案的速度比聯網讀 Google Docs 快且精準。
+*   **`AGENTS.md`**：最重要的一個檔。寫專案目的、怎麼跑、怎麼測試、哪些是 Tier 1 地雷區。範本在 [`templates/AGENTS.md`](../templates/AGENTS.md)，背後的邏輯在 [奪回思考主權](./Boundaries_with_AI_ZH.md)。
+*   **`docs/decisions/`**：這是我覺得最被低估的檔案。Code 會告訴 Agent「現在長怎樣」，但只有決策紀錄能告訴它「為什麼長這樣」，避免它好心把你刻意的設計「修正」掉。
+*   **進度追蹤**：第一版我手寫 `task.md`。現在我讓 Agent 在做完一段工作時**自己更新**進度檔，或直接透過 MCP 連到團隊的任務系統（ClickUp、Linear、Jira）去讀票、更新票。原則不變：**進度要存在 AI 讀得到的地方。**
+
+### 2. 讓 Context 保持精簡
+規則檔不是越長越好。每一行都會在每次任務中佔用 Agent 的注意力。
+我的原則：**只寫 Agent 自己從 Code 看不出來的事**（商業脈絡、地雷區、團隊慣例），而且是被事故教訓過才加。
 
 ---
 
-## 🔒 進階技巧：機敏資料的「隱身術」 (.gitignore)
+## 🔒 機敏資料：比「別上傳 GitHub」多想一步
 
-這是新手最容易踩雷的地方！
-有些資料（如客戶名單、API Key）**絕對不能**上傳到 GitHub 公開。
-
-### 實戰案例
-假設我的專案有一個 VIP 客戶名單 `data/VIP_Clients_Q1.csv` 和一個金鑰檔 `secrets.json`。
-
-**步驟 1：告訴 Git「無視」它們**
-在專案根目錄找到或建立 `.gitignore` 檔案，加入以下內容：
+### 第一層：別讓它進 Repo（`.gitignore`）
 
 ```gitignore
-# 忽略機敏資料夾內的所有檔案
-data/VIP_Clients_Q1.csv
-secrets.json
-
-# 也可以忽略整個環境設定檔
+# 真實資料與金鑰
+data/raw/
+*.csv
 .env
+secrets.json
 ```
 
-**步驟 2：手動備份**
-既然這些檔案不上傳 GitHub，那換電腦怎麼辦？
-👉 **回到最原始的方法：雲端硬碟**。
-1. 把 `VIP_Clients_Q1.csv` 上傳到你的 Google Drive 私人資料夾。
-2. 在新電腦 `git clone` 專案後。
-3. 從 Google Drive 下載該檔案，並**手動放回** `data/` 資料夾中。
+並提供 `.env.example`，讓新電腦、新同事、新 Agent 知道需要哪些變數，但看不到真的值。
 
-這樣既保證了資安，又能在不同電腦間順利切換工作！
+### 第二層：別讓它進 Agent 的 Context
+這是 2025 年我沒想到的：**Agent 會自己去開檔案。** 就算檔案沒上 GitHub，只要它在你的資料夾裡，Agent 就有可能讀到，並把內容送進模型。
+
+*   **用去識別化的範例資料開發**：`data/sample/` 放假資料或遮罩過的資料，真實客戶名單不放在專案資料夾裡。
+*   **在 `AGENTS.md` 寫清楚**：「不要讀取 `data/raw/`；需要資料結構時看 `data/sample/`。」
+*   **用權限設定擋住**：大部分 Agent 工具都可以設定哪些路徑禁止讀取。
+
+### 第三層：金鑰放對地方
+API Key 放進密碼管理器或公司的 Secrets Manager，**不要貼進對話框**，也不要用雲端硬碟傳來傳去。
 
 ---
 
 ## 🔄 完整工作流：從 A 電腦切換到 B 電腦
 
-假設你今天在公司 (電腦 A) 做了一半，回家想用筆電 (電腦 B) 繼續：
+### 在電腦 A（收工前）
+1.  跟 Agent 說：「把今天的進度和還沒解決的問題更新到進度檔，然後幫我 commit 並 push。」
+2.  看一眼它的 commit 內容，確認沒有機敏資料。
 
-### 在電腦 A (下班前)
-1. 呼叫 AI：「更新 `task.md`，把我們做完的打勾。」
-2. 執行 Git 指令 (或請 AI 幫你)：
-   ```bash
-   git add .
-   git commit -m "update: 完成首頁設計與 task 更新"
-   git push
-   ```
-3. 確認機敏資料 (如 CSV) 已經備份在 Google Drive。
+### 在電腦 B（開工時）
+1.  `git clone`（或 `git pull`）專案。
+2.  照 `.env.example` 從密碼管理器補上金鑰。
+3.  跟 Agent 說：「讀一下 `AGENTS.md` 和進度檔，告訴我現在的狀態和下一步建議。」
+4.  🚀 接上了。
 
-### 在電腦 B (回家後)
-1. 打開 Terminal:
-   ```bash
-   git clone https://github.com/your-name/project.git
-   ```
-2. **[關鍵動作]** 從 Google Drive 下載機敏檔案 (`VIP_Clients_Q1.csv`)，放回 `data/` 資料夾。
-3. 打開 IDE，跟 AI 說：「請讀取 `task.md`，告訴我接下來該做什麼？」
-4. 🚀 無縫接軌，繼續開發！
+> 💡 很多 Agent 工具現在也支援雲端執行的 Session，可以在手機上看進度、在另一台電腦接手。但**Repo 裡的檔案永遠是最可靠的交接方式**，因為它不綁任何一個工具。
 
 ---
 
 ## 結語
 
-身為 PM 或與 AI 協作的開發者，**學會管理 Context 比學會寫扣更重要**。
-當你建立了這套結構，你就不再只是在「問 AI 問題」，而是在「與 AI 共同經營一個產品」。
+身為 PM，**學會管理 Context 比學會寫 Code 更重要**。
+工具每半年就換一輪，但「把思考寫成檔案、讓任何 Agent 都能接手」這件事不會過時。
+當你建立了這套結構，你就不再是在「問 AI 問題」，而是在「帶一個 AI 團隊經營產品」。
 
-*如果你覺得這篇指南有幫助，歡迎 Fork 或 Star 我的 Repository！*
-*(在此附上你的 Repo 連結)*
+*如果這篇有幫助，歡迎 Star 或 Fork [這個 Repo](https://github.com/codingbaddie/ai-pm-survival-guide)！*

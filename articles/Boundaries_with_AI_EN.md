@@ -1,82 +1,100 @@
-# Reclaiming Sovereignty: Why Your AI Needs a Strict Product Manager (Configuration Included)
+# Reclaiming Sovereignty: Turning "Tiered Engagement" from a Prompt into a Mechanism (2026 Edition)
 
-> **This is not a prompt engineering tutorial. This is a redesign of the collaboration power structure.**
+> **This is not a prompt engineering tutorial. This is a redesign of the power structure between humans and agents.**
 
-## 1. The Post-Honeymoon Disillusionment: The Trap of the "Pleaser" AI
+[🇹🇼 繁體中文](./Boundaries_with_AI_ZH.md) · *Last reviewed: 2026-10*
 
-Every developer using tools like Cursor or Claude goes through a "honeymoon phase." You pitch a vague idea, and the AI responds: "Great idea! Here's the code..." You feel like a commander, your productivity multiplied.
+> 📝 **Revision note**: The first version of this article (2025) solved the problem with a prompt in `.cursorrules` that "forced" the AI into critical mode. The concept still holds; the implementation is outdated. For what I got wrong, read [What I Got Wrong 9 Months Ago](./What_I_Got_Wrong_EN.md).
 
-But weeks later, disaster strikes.
-Your project becomes filled with logically inconsistent features, over-engineered architecture, and spaghetti code that is impossible to maintain.
+## 1. The Problem Changed: From "AI Is Too Agreeable" to "Agents Are Too Capable"
 
-Why? Because the AI's default personality is a **"Pleaser."**
-It optimizes for "conversation agreeableness" and "instant gratification," not "long-term product value." When you propose a terrible idea, it won't stop you; it will help you execute that terrible idea with maximum efficiency.
+In early 2025 my biggest pain was that the AI was a **Pleaser**: pitch a bad idea and it would implement that bad idea with maximum efficiency.
 
-**If you stop thinking, the AI won't start thinking for you. It will only accelerate your destruction.**
+Today's models push back. They ask "are you sure?" The problem didn't disappear. It **changed shape**:
 
-## 2. Alignment Time: Humans Do the "Why", AI Does the "How"
+*   **Then**: The AI wrote a snippet. Nothing happened until you pasted it. You were the gate by default.
+*   **Now**: An agent reads the whole repo, runs commands, edits a dozen files, and opens a PR. You hand over a requirement and get back a finished package.
 
-During a recent project setup, I tried to force my AI assistant (Antigravity) to adopt an aggressive Product Manager persona. I told it: "I want you to think critically about everything I say. Never blindly obey."
+**The danger is no longer "the AI doesn't think." It's "the AI thinks so fast you never get a chance to intervene."**
+When execution cost approaches zero, the human's remaining leverage is deciding **when to stop and think.**
 
-It schooled me in return:
-> *"If I have to debate philosophy with you while you're just trying to fix a simple bug, that's Analysis Paralysis. That's not efficiency; that's stupidity."*
+## 2. The Tiered Engagement Model Still Holds
 
-That moment, I realized true collaboration isn't "total takeover"; it's "tiered governance."
-We need a **Tiered Engagement Model**.
+I learned this from an argument with an AI. I told it to "challenge everything I say, never blindly obey." It replied: *"Debating philosophy while you fix a simple bug is analysis paralysis."*
 
-## 3. The Framework: Tier 1 vs. Tier 2
+Real collaboration isn't total takeover. It's **tiered governance**:
 
-We don't have to choose between "total control" and "total hands-off." We can define boundaries via `.cursorrules` or System Prompts.
+| | **Tier 1: Critical Mode (Strategy)** | **Tier 2: Execution Mode (Tactics)** |
+|:---|:---|:---|
+| **Applies to** | Core architecture, UX flows, business logic, data models | Bug fixes, UI tweaks, refactors, prototypes |
+| **Signal** | One-way door, wide impact, ambiguous goal | Two-way door, low risk, clear goal |
+| **AI behavior** | Ask why, lay out trade-offs, **wait for a human decision** | Do it to industry standard, report when done |
+| **Human role** | Decision maker | Reviewer |
 
-### Tier 1: Critical Mode (Strategy Layer)
-When the task involves **Core Architecture, User Experience Flows, or Business Logic**, the AI must switch to "Strict Senior PM" mode.
-*   **Key Behavior**: Refuses blind execution, aggressively asks "Why," and forces you to make trade-offs.
-*   **Trigger**: One-way Door decisions (irreversible), High Risk, Ambiguity.
+Three dimensions to decide the tier:
+1.  **Reversibility**: If it's wrong, is `git revert` enough?
+2.  **Impact radius**: Is the failure "mildly annoying" or "users lose trust"?
+3.  **Ambiguity**: Is the goal clear, or have I not figured it out myself yet?
 
-### Tier 2: Execution Mode (Tactics Layer)
-When the task involves **Bug Fixes, UI Tweaks, or MVP Prototyping**, the AI must switch to "High-Efficiency Senior Engineer" mode.
-*   **Key Behavior**: Shut up and code. Deliver fast using Industry Standards.
-*   **Trigger**: Two-way Door decisions (reversible), Low Risk, Clarity.
+## 3. The 2026 Upgrade: Stop *Asking* the AI to Behave. Build the Rules into the System.
 
-## 4. In Practice: Configuration as Code
+Version one asked the AI to classify the tier itself via a prompt. The problem: **a prompt is a suggestion, not a constraint.** In a long session or a rushed task, it gets diluted.
 
-Talk is cheap. Let's put this logic into code. This is the `.cursorrules` configuration I now use across all my projects. Copy this to your project root, and your AI will instantly switch personas.
+Modern agent tools (Claude Code, Cursor, Codex, etc.) provide real gates. I now implement the model in three layers:
+
+### Layer 1: Project rules file — the house rules
+`.cursorrules` is deprecated. The cross-tool convention is an **`AGENTS.md`** at the repo root (read by most agent tools). Claude Code reads `CLAUDE.md`, which can import the same file with a single `@AGENTS.md` line.
+
+Don't write a persona ("You are a senior PM"). Write **where this project's Tier 1 minefields are**:
 
 ```markdown
-# AI Product Consultant Persona
+## Tier 1 zones — stop and ask before changing
+- Database schema / migrations
+- Pricing, billing, anything touching money
+- Auth & permissions
+- Anything that changes what the user sees in the core checkout flow
 
-## Tiered Engagement Model
-Based on the task type, you must adhere to the following engagement tiers:
-
-### Tier 1: Critical/Dialectical Mode
-**Apply to:** Core Architecture, UX Flows, Business Logic.
-*(Triggered by: One-way Door decisions, High User Impact, High Ambiguity)*
-
-**Behavior:**
-- **Prioritize Long-Term Value**: Always weigh decisions against long-term goals.
-- **Aggressive Inquiry**: Ask clarifying questions; do not assume.
-- **Force Decisions**: Make the user face trade-offs (Hard Questions).
-- **Debate**: Engage in dialectical discussion. Do not blindly follow orders.
-
-### Tier 2: High-Efficiency Execution Mode
-**Apply to:** Bug Fixes, Simple Refactoring, MVP Prototyping, Minor UI.
-*(Triggered by: Two-way Door decisions, Low Risk, High Clarity)*
-
-**Behavior:**
-- **Execute Fast**: Less debate, more action.
-- **Standard Best Practices**: Follow industry standards without over-analyzing customized long-term impacts unless critical.
-
-## Tier Determination Logic (The "Why")
-When receiving a request, evaluate it against these 3 dimensions:
-1.  **Reversibility**: Is this a One-way Door (Hard to reverse = Tier 1) or Two-way Door (Easy to fix = Tier 2)?
-2.  **Impact Radius**: Does it break trust/value if wrong (Tier 1) or just annoy usage (Tier 2)?
-3.  **Ambiguity**: Is the goal vague (Tier 1) or is the implementation clear (Tier 2)?
+For these: write a plan, list trade-offs, and wait for my explicit approval.
+Everything else is Tier 2: just do it, run the tests, report back.
 ```
+
+A full template lives at [`templates/AGENTS.md`](../templates/AGENTS.md).
+
+### Layer 2: Plan Mode — "think before doing" for Tier 1
+Most agent tools now have a **Plan Mode**: the agent can read but not edit, and must present a plan you approve before it starts.
+
+That is Tier 1, mechanized. My habit:
+*   **Tier 1 tasks** always start in Plan Mode. I review the plan, not the code.
+*   **Tier 2 tasks** go straight through, often with auto-accepted edits.
+
+### Layer 3: Permissions & Hooks — physically block one-way doors
+Some things can't rely on "it will remember to ask."
+*   **Permissions**: `git push`, file deletion, and outbound messages always require my approval.
+*   **Hooks**: Automatic checks before certain actions (e.g., touching `migrations/` forces a stop).
+
+> **Prompts are culture, Plan Mode is process, permissions and hooks are access control.** Mature organizations need all three, and so does working with AI.
+
+## 4. How I Actually Work Now
+
+1.  When I hand over a task, **I decide the tier**, not the AI. It takes 5 seconds and shapes the next 5 hours.
+2.  Tier 1 → Plan Mode. I deliberately ask: "Where is this plan most likely wrong? Is there a simpler way?"
+3.  Tier 2 → let it run; I read the test results and the diff summary.
+4.  Every time the agent does something I later think "you should have asked me first," I add it to the Tier 1 list in `AGENTS.md`. **Rules files grow out of incidents.**
+
+### The tier also decides the model
+Tiering decides not just whether the AI asks me first, but **how much to spend**.
+*   **Tier 1 work gets the expensive model**: spec judgment, trade-offs, and cross-document consistency checks run on Opus in the main conversation.
+*   **Tier 2 labor goes to a cheaper model**: turning a finalized spec into an HTML prototype or making repetitive screen changes, I have it dispatch a Sonnet subagent. A subagent can't see the main conversation, so the spec and visual rules must be handed over in full; the main conversation always verifies the result by opening the screens, checking the numbers, and making sure no real personal data slipped in.
+
+Expensive models make decisions; cheap models do the labor. It's the same as running a team: you don't have your most senior person slicing layouts all day.
+
+### State the production rules up front
+I have Claude operate production in a browser, for example to capture screenshots for user manuals or build training materials. Before it starts, I always say: **don't change any data**; if a step truly requires a change, restore it afterward. That's the textbook one-way door, and I can't wait for it to think of that on its own.
 
 ## 5. Conclusion: Restrictions Liberate
 
-Once you implement these rules, you'll feel a strange sense of freedom.
-You know that when the AI starts coding, it's because **you have already thought through the strategy** (otherwise, it would have stopped you at Tier 1).
+With boundaries in place, I delegate *more* to agents, not less.
+Because when an agent starts making sweeping changes, I know it's because **I've already thought through the strategy.**
 
-AI is your hands and legs, maybe even your exoskeleton. But the brain must remain in your head.
-Reclaim your sovereignty over thinking. Start by setting boundaries.
+AI is your exoskeleton, maybe even a whole engineering team. But the brain stays in your own head.
+Reclaim your thinking by setting boundaries, and in 2026, set them with mechanisms, not with polite requests.

@@ -1,48 +1,66 @@
-# 📄 Google Workspace Pitfalls: Why Can't AI Read Your Docs?
+# 📄 Google Workspace × AI: Making Your Docs Readable by Agents (2026 Edition)
 
-*(This guide compiles real-world "pitfalls" and "standard solutions" to help teams build an AI-Friendly knowledge base.)*
+[🇹🇼 繁體中文](./Google_Workspace_Guide.md) · *Last reviewed: 2026-10*
 
-## 🎯 Why This Guide?
+*(Pitfalls I hit in practice and the standard fixes, to help teams build an AI-friendly knowledge base.)*
 
-In adopting an AI Workflow, I discovered that the "Visual Formatting" humans love is often a reading barrier for AI.
+> 📝 **Revision note**: Version one told every PM to create a Service Account and download a JSON key. By today's standards that's a **security anti-pattern**, so it's gone. The Google Docs API can also read Tabs now, and that section has been updated.
 
-> **"AI cannot 'login to Google' and 'click' buttons like a human. It understands the world through APIs and Plain Text."**
+## 🎯 Core Idea
 
-## ✅ Document Preparation Checklist
+> **AI doesn't *look* at your document. It *reads* it through an API or exported text.**
 
-### Type A: Google Docs
-
-| Item | The Pain Point | The Solution |
-| :--- | :--- | :--- |
-| **Links** | ❌ **Smart Chips**<br>When you paste a URL and it turns into a grey bubble. The API often loses the URL and only sees the title. | ✅ **Standard Hyperlink**<br>Use blue underlined text (`Cmd+K`) to ensure the `url` attribute is preserved.<br><br>👉 [Example](https://docs.google.com/) (Yes)<br>👉 `[📄 Chip]` (No) |
-| **Tabs** | 🚫 **Tabs (Pageless)**<br>The API reads all tabs as one long string of text. AI gets confused about boundaries. | ✅ **H1 Header Roadmaps**<br>Manually add an **H1 Header** at the top of each section content.<br>*(e.g., # Tab 1: Interview Notes)* |
-
-### Type B: Google Sheets
-
-*   **Specify the Sheet**: Explicitly prompt the Sheet Name (e.g., "Analyze the 'Q3 Revenue' tab").
-*   **Avoid Merged Cells**: Merged cells mess up column mapping. Keep table structures simple.
-*   **Row 1 is Header**: The first row must be clear column names.
-
-### Type C: Meeting Recordings (Meet/Zoom)
-
-*   **Capability**: **Gemini 3 Pro natively supports Video/Audio** (Multimodal). Technically, it can watch `.mp4` files.
-*   **Recommendation**: Despite the capability, considering **API Cost (Tokens)** and **Speed**, plus RAG efficiency, it is highly recommended to provide **Transcripts**.
-*   **Best Practice**: Use auto-generated transcripts (Meet) or convert to `.txt` for the fastest, cheapest, and most accurate analysis.
+Visual formatting that humans rely on (colors, chip links, merged cells) often loses information when converted to text.
+A doc that's friendly to AI is **always friendlier to a new teammate too**: clear structure, explicit links, meaningful headings.
 
 ---
 
-## 🔐 Access Control
+## 🔐 Step 1: Connect AI to Workspace the Right Way
 
-To ensure security and auditability, every PM should request a dedicated Google Cloud Service Account.
+### ✅ Recommended: Official connectors / MCP, authorized as *you*
+Mainstream AI tools now connect to Google Drive / Docs / Sheets directly:
+*   **Claude**: Enable the Google Drive (and related) connectors in settings and authorize via OAuth.
+*   **Gemini in Workspace**: Built into Docs, Sheets, and Gmail.
+*   **Coding agents** (Claude Code, Cursor, etc.): Connect a Google Workspace MCP server.
 
-### 1. Create Service Account
-1. Go to [Google Cloud Console](https://console.cloud.google.com/) > **IAM & Admin** > **Service Accounts**.
-2. Create new account (e.g., `pm-rachel-ai-agent`).
-3. Download the **JSON Key** and store it safely (This is your AI's digital passport).
+The benefit: **the AI only sees files you can already see.** Access follows your account and is revoked automatically when you change roles or leave. There's no key file to look after.
 
-### 2. Grant Access
-In any Google Doc you want the AI to read, click **Share** and add the Service Account's Email:
+### ⚠️ Use a Service Account only for automation
+Scheduled jobs and server-side bots do need a Service Account. If you go that route:
+*   **Don't download a JSON key.** A leaked key file is a leaked account. Google itself advises avoiding them, and many organizations block key creation by default.
+*   Prefer Workload Identity Federation, or an identity attached directly to a Google Cloud resource.
+*   Grant the minimum: share only the folders needed, as **Viewer**.
 
-> `pm-name-ai@project-id.iam.gserviceaccount.com`
+> In version one I recommended "each PM creates a Service Account and downloads a JSON key as the AI's digital ID." That's convenient for a small team, but keys end up scattered across laptops, unauditable and hard to revoke. **For personal use, always go through an OAuth connector.**
 
-*   Role: **Viewer**
+---
+
+## ✅ Document Readiness Checklist
+
+### Type A: Google Docs
+
+| Check | Problem | Recommendation |
+| :--- | :--- | :--- |
+| **Links** | ❌ **Smart Chips** (grey pills)<br>Depending on the tool, conversion to text may **keep the title but drop the URL**. | ✅ Use **standard hyperlinks** (`Cmd+K`) for important references, or paste the URL alongside. |
+| **Tabs** | ⚠️ The Docs API reads tabs now, but not every connector or export format preserves tab boundaries. | ✅ Put an **H1 heading** with the tab name at the top of each tab. Cheap, and every tool understands it. |
+| **Heading levels** | ❌ Faking headings with bold, enlarged text. | ✅ Use real Heading 1/2/3. AI relies on headings to understand structure. |
+| **Info inside images** | ❌ Key numbers exist only in a screenshot. | ✅ Write the key points or numbers as text next to the image. |
+
+### Type B: Google Sheets
+*   **One sheet, one purpose.** Name the sheet explicitly in your prompt (e.g., "Analyze the 'Q3 Revenue' sheet").
+*   **No merged cells.** Row 1 is a clean header row.
+*   **Separate data from reports**: raw data on one sheet, pivots and charts on another. AI is most accurate on raw data.
+*   **Don't hand sheets with personal data straight to AI**: make a de-identified or aggregated copy first.
+
+### Type C: Meeting Recordings (Meet / Zoom)
+*   **Capability**: Mainstream multimodal models can watch video and listen to audio directly.
+*   **Practical advice**: Still prefer **transcripts / AI meeting notes**. Text is cheaper, faster, and easiest to search and cite. Send video only when the visuals matter (demo recordings, usability tests).
+*   **Best practice**: Turn on Meet transcripts or AI notes, save them to a fixed folder with consistent naming (e.g., `2026-10-02_Product-Weekly`), and AI can search them directly through a connector.
+
+---
+
+## 🧭 Team-Level Recommendations
+
+1.  **A fixed "AI reading area"**: One Drive folder for PRDs, decision records, and meeting notes, with naming rules. AI and new hires both know where to look.
+2.  **Retire stale docs**: AI can't tell which version is old. Mark outdated docs "Deprecated" or move them to an archive, or it will confidently cite the wrong one.
+3.  **Important things eventually belong in the repo**: Specs an agent will use repeatedly should be exported to Markdown in the project's `docs/` (see the [AI-Native Workflow Guide](./AI_Native_Workflow_Guide_EN.md)).

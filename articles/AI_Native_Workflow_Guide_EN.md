@@ -63,6 +63,47 @@ My rule: **only write what the agent can't infer from the code** (business conte
 
 ---
 
+## 🧱 In Practice: Making a Repo Hard to Misread
+
+The above is the principle. Below is what I actually ran into and changed in 2026.
+
+### 1. Engineers' agents won't dig through your branches
+I used to open one branch per feature and edit the PRD there until I was happy, merging later. Then I realized engineers also have their Claude Code read the repo, and it looks at main by default. With too many branches, the spec effectively didn't exist.
+
+So I reorganized:
+- **main holds only current specs**, the version engineers should build from.
+- **Proposals go in `proposals/`**, marked "for reference only, not decided" at the top.
+- **One `decision_log` per domain**, with pending requests explicitly marked pending so they aren't read as decided.
+- **CSVs containing customer data are removed from version control**, even in a private repo.
+
+My test: if an agent that took no part in any discussion opens this repo, will it misread something? If yes, the structure is wrong.
+
+### 2. The PRD states conclusions; the reasons go in the decision log
+AI loves writing rationale: why A and not B, what the previous version was, what's out of scope. Very thorough, and engineers don't need it.
+
+My rule now is simple: **the PRD says what dev builds and what QA verifies.** Rationale, iteration history, and rejected options all go in the `decision_log`. Explaining why is the PM's job; when I forget, I look it up there.
+
+When I cut AI-written paragraphs, I ask one question: **if this is deleted, can dev still implement it correctly?** If yes, it goes.
+
+Two more AI habits I keep catching:
+- **Absolute words.** When I see "regardless," "always," or "never," I try one or two counterexamples. If one breaks it, the word was lazy.
+- **Partial fixes.** QA flags one case and the AI patches only that line without revisiting the other branches. I ask directly: is this fixing a symptom or the principle?
+
+### 3. Align first, then open tickets
+A nutritionist once reported that the system said a client was missing their starting weight when it wasn't. The AI quickly opened a frontend and a backend ticket. After QA and frontend each commented, things got murkier; the three parties weren't even talking about the same problem.
+
+What I did instead was go back to the original problem:
+1. Delete the tickets.
+2. Have the AI write a **consensus document**: what the current behavior gets wrong, what correct behavior looks like, every scenario listed. Written as "what the user expects to see," not in technical terms, with each product's behavior described separately.
+3. Share it with frontend, backend, and QA together; open tickets only once we agree.
+4. When the backend later changed approach, I had the AI update every spec that referenced it.
+
+**Tickets are for dividing work, not for aligning understanding.** Open them before people agree and everyone builds their own interpretation.
+
+One small trap: a ticket linked to a repo document that hadn't been pushed to the linked branch yet. A private repo doesn't say "file not found"; it just returns 404. I asked in the group chat and heard nothing for a whole day before realizing the link was broken, not that people were too busy. Now I confirm a file is on the remote before linking it.
+
+---
+
 ## 🔒 Sensitive Data: One Step Beyond "Don't Push It to GitHub"
 
 ### Layer 1: Keep it out of the repo (`.gitignore`)

@@ -23,7 +23,7 @@ AI Agent 現在能自己讀完整個 Codebase、執行指令、開 Pull Request�
 | 文章 | 核心概念 | 語言版本 |
 |:--- |:--- |:--- |
 | 🆕 **我 9 個月前錯在哪** | 一次自我 Code Review：哪些觀念留下來、哪些工具建議過期了、為什麼。 | [English](./articles/What_I_Got_Wrong_EN.md) / [中文](./articles/What_I_Got_Wrong_ZH.md) |
-| 🆕 **把 PM 的工作流程做成 Skill** | 從「會用 AI」到「為團隊打造 AI 能力」：BRD 撰寫 / 審查、需求收斂，以及設計 Skill 的 6 個原則。 | [English](./articles/Skills_as_Product_EN.md) / [中文](./articles/Skills_as_Product_ZH.md) |
+| 🆕 **把 PM 的工作流程做成 Skill** | 從「會用 AI」到「替團隊做出 AI 能力」：BRD 撰寫 / 審查這一組、用真實證據驅動的迭代方法，以及 7 輪真實使用學到的事。 | [English](./articles/Skills_as_Product_EN.md) / [中文](./articles/Skills_as_Product_ZH.md) |
 | **奪回思考主權** | 分級介入模型，用機制實現（`AGENTS.md`、Plan Mode、權限、Hooks），而不只是 Prompt。 | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
 | **AI 原生工作流指南** | 把 Git Repo 變成你和 Agent 的共享大腦：Context Files、決策紀錄，以及讓機敏資料遠離 Agent 的 Context。 | [English](./articles/AI_Native_Workflow_Guide_EN.md) / [中文](./articles/AI_Native_Workflow_Guide.md) |
 | **從 Prototype 到 Production** | 為什麼 AI 變聰明了，原型幻覺還在；以及瓶頸為什麼從「寫 Code」變成「審 Code」。 | [English](./articles/From_Prototype_to_Production_EN.md) / [中文](./articles/From_Prototype_to_Production.md) |

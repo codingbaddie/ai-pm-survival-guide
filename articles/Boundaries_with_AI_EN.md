@@ -81,6 +81,16 @@ Some things can't rely on "it will remember to ask."
 3.  Tier 2 → let it run; I read the test results and the diff summary.
 4.  Every time the agent does something I later think "you should have asked me first," I add it to the Tier 1 list in `AGENTS.md`. **Rules files grow out of incidents.**
 
+### The tier also decides the model
+Tiering decides not just whether the AI asks me first, but **how much to spend**.
+*   **Tier 1 work gets the expensive model**: spec judgment, trade-offs, and cross-document consistency checks run on Opus in the main conversation.
+*   **Tier 2 labor goes to a cheaper model**: turning a finalized spec into an HTML prototype or making repetitive screen changes, I have it dispatch a Sonnet subagent. A subagent can't see the main conversation, so the spec and visual rules must be handed over in full; the main conversation always verifies the result by opening the screens, checking the numbers, and making sure no real personal data slipped in.
+
+Expensive models make decisions; cheap models do the labor. It's the same as running a team: you don't have your most senior person slicing layouts all day.
+
+### State the production rules up front
+I have Claude operate production in a browser, for example to capture screenshots for user manuals or build training materials. Before it starts, I always say: **don't change any data**; if a step truly requires a change, restore it afterward. That's the textbook one-way door, and I can't wait for it to think of that on its own.
+
 ## 5. Conclusion: Restrictions Liberate
 
 With boundaries in place, I delegate *more* to agents, not less.

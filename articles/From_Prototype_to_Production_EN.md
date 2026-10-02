@@ -53,6 +53,35 @@ An agent can write the code, but it can't be accountable for:
 
 ---
 
+## 🧪 In Practice: How I Build Prototypes Now
+
+We have no designer, so prototypes are mostly me and Claude. Here's my current process. Every rule was added after something went wrong.
+
+### 1. Read both product repos before building anything
+Once I needed to change the weekly filter in our outcome-tracking feature so users could look back at past weeks. I had Claude read the frontend and backend repos first, to understand what the data really looks like and how the current screens are built, then build the prototype and deploy it to Vercel so the requester could actually use it.
+
+Feedback from someone who *used* a prototype is very different from someone who *looked* at it. Users tell you "I wouldn't click it this way on Monday morning." Screenshot viewers say "looks good."
+
+### 2. A prototype should look like production, not look pretty
+The first version Claude made was blue, very hi-fi, and full of emoji. Beautiful, and nothing like our product. A requester seeing that assumes a redesign is coming, and the feedback goes sideways.
+
+So I had it extract our production design system into a reference spec, and every prototype now follows it. One more rule: **reuse UX patterns production already has.** Don't invent new navigation. Users learned it once; they shouldn't have to again.
+
+### 3. Every control on the screen must actually work
+One mockup had a date picker that was pure decoration: change the date and no number moved. I tried it once and asked, "When I switch dates, do the numbers really reflect the mock data?" They didn't. That mockup couldn't be reviewed, so it was wasted work.
+
+Now, for every picker, dropdown, or toggle, the first question is "what changes when I switch this?" No answer, no control. Mock data is designed around several distinct user types so the numbers visibly differ when you switch.
+
+### 4. Mock data is anonymous from the first record
+Once, with a mockup nearly finished, I realized it had carried over real staff and client names, and everything had to be replaced. Mockups get passed around inside and outside the team; they are sensitive data.
+
+Now everything uses fake names and sequential IDs from record one. Especially when I give Claude production screenshots as reference: names in those screenshots must never be copied into a mockup.
+
+### 5. Use a cheaper model for prototypes
+Specs, trade-offs, and cross-document consistency I leave to Opus. Turning a finalized spec into HTML screens is high-volume, rule-bound work, so I have it dispatch a Sonnet subagent and then check the result in the main conversation. (See section 4 of [Reclaiming Sovereignty](./Boundaries_with_AI_EN.md).)
+
+---
+
 ## 🛡️ What Should a PM Do?
 
 ### 1. Change the pitch

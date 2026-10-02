@@ -23,7 +23,7 @@ This repository is not a prompt collection. It is a set of **mental models, mech
 | Article | Key Idea | Languages |
 |:--- |:--- |:--- |
 | 🆕 **What I Got Wrong 9 Months Ago** | A self code review: which ideas survived, which tool advice expired, and why. | [English](./articles/What_I_Got_Wrong_EN.md) / [中文](./articles/What_I_Got_Wrong_ZH.md) |
-| 🆕 **Turning PM Workflows into Skills** | From "using AI" to building team capability: BRD writer/reviewer, requirement intake, and 6 design principles for skills. | [English](./articles/Skills_as_Product_EN.md) / [中文](./articles/Skills_as_Product_ZH.md) |
+| 🆕 **Turning PM Workflows into Skills** | From "using AI" to building team capability: a BRD writer/reviewer pair, an evidence-driven iteration loop, and lessons from 7 rounds of real use. | [English](./articles/Skills_as_Product_EN.md) / [中文](./articles/Skills_as_Product_ZH.md) |
 | **Reclaiming Sovereignty** | The Tiered Engagement Model, implemented with mechanisms (`AGENTS.md`, Plan Mode, permissions, hooks), not just prompts. | [English](./articles/Boundaries_with_AI_EN.md) / [中文](./articles/Boundaries_with_AI_ZH.md) |
 | **AI-Native Workflow Guide** | Turn a Git repo into the shared brain for you and your agents: context files, decision records, and keeping sensitive data out of agent context. | [English](./articles/AI_Native_Workflow_Guide_EN.md) / [中文](./articles/AI_Native_Workflow_Guide.md) |
 | **From Prototype to Production** | Why the Prototype Illusion survives smarter AI, and why the bottleneck moved from writing code to reviewing it. | [English](./articles/From_Prototype_to_Production_EN.md) / [中文](./articles/From_Prototype_to_Production.md) |

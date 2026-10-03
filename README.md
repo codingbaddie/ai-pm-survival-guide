@@ -34,6 +34,7 @@ This repository is not a prompt collection. It is a set of **mental models, mech
 
 | Path | What it is |
 |:---|:---|
+| [**codingbaddie/agent-skills**](https://github.com/codingbaddie/agent-skills) | My production PM skills: `brd-writer`, `brd-reviewer`, `rachel-pm-skill`, `manual-writer`. Installable as a Claude Code plugin marketplace, as Claude.ai zips, or inside your company's own marketplace. |
 | [`templates/AGENTS.md`](./templates/AGENTS.md) | A project rules file with Tier 1 / Tier 2 zones. Copy it to your repo root. |
 | [`skills/capture-learning`](./skills/capture-learning/SKILL.md) | Skill: distill the current session into a learning note and file it in the inbox. |
 | [`skills/process-inbox`](./skills/process-inbox/SKILL.md) | Skill: triage inbox notes into article updates, with human confirmation before writing. |

@@ -88,4 +88,4 @@ brd-writer 從 8 月上線到現在改了 7 輪。每一輪都是同一個 loop�
 
 我自己衡量 AI native 的方式，不是看我用 AI 多快，而是看我不在的時候，團隊能不能用我留下來的 skill 繼續把事情做好。
 
-這個 repo 裡有兩個可以直接拿去用的範例：[`capture-learning`](../skills/capture-learning/SKILL.md) 跟 [`process-inbox`](../skills/process-inbox/SKILL.md)。
+文中提到的四個 skill 都公開在 [codingbaddie/agent-skills](https://github.com/codingbaddie/agent-skills)，可以直接安裝。這個 repo 裡另外有兩個範例：[`capture-learning`](../skills/capture-learning/SKILL.md) 跟 [`process-inbox`](../skills/process-inbox/SKILL.md)。

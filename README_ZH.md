@@ -34,6 +34,7 @@ AI Agent 現在能自己讀完整個 Codebase、執行指令、開 Pull Request�
 
 | 路徑 | 內容 |
 |:---|:---|
+| [**codingbaddie/agent-skills**](https://github.com/codingbaddie/agent-skills) | 我實際在用的 PM skill：`brd-writer`、`brd-reviewer`、`rachel-pm-skill`、`manual-writer`。可以當 Claude Code plugin 安裝、下載 zip 給 Claude.ai 用，或放進你們公司自己的 marketplace。 |
 | [`templates/AGENTS.md`](./templates/AGENTS.md) | 含 Tier 1 / Tier 2 區域的專案規則檔，複製到你的 Repo 根目錄。 |
 | [`skills/capture-learning`](./skills/capture-learning/SKILL.md) | Skill：把當下的對話濃縮成學習筆記，存進 inbox。 |
 | [`skills/process-inbox`](./skills/process-inbox/SKILL.md) | Skill：把 inbox 的筆記分類、整理成文章，動筆前先等人類確認。 |

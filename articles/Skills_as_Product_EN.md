@@ -88,4 +88,4 @@ A PM's output used to be documents: PRDs, specs, meeting notes. Now there's anot
 
 I don't measure how AI-native I am by how fast I use AI, but by whether the team can keep doing good work with the skills I leave behind when I'm not there.
 
-This repo includes two ready-to-use examples: [`capture-learning`](../skills/capture-learning/SKILL.md) and [`process-inbox`](../skills/process-inbox/SKILL.md).
+All four skills in this article are public and installable at [codingbaddie/agent-skills](https://github.com/codingbaddie/agent-skills). This repo also includes two examples: [`capture-learning`](../skills/capture-learning/SKILL.md) and [`process-inbox`](../skills/process-inbox/SKILL.md).
